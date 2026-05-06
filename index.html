@@ -1,23 +1,117 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>猫部逻辑观测站</title>
+    <title>Cat Behavior Handbook</title>
     <style>
-        /* 这里是你的实验室风格设计 */
-        body { background-color: #f5f7f9; font-family: 'Helvetica', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .lab-card { background: white; width: 400px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e0e6ed; }
-        h1 { font-size: 18px; color: #2c3e50; border-bottom: 2px solid #00d1b2; padding-bottom: 10px; letter-spacing: 2px; }
-        .sensor-btn { background: #fdfdfd; border: 1px solid #eee; width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; text-align: left; transition: 0.3s; color: #555; }
-        .sensor-btn:hover { background: #00d1b2; color: white; border-color: #00d1b2; }
-        #display { margin-top: 20px; padding: 20px; background: #fafafa; border-radius: 10px; min-height: 80px; font-size: 14px; line-height: 1.6; color: #666; border-left: 4px solid #ddd; }
-        .logic-label { font-weight: bold; color: #00d1b2; }
+/* 引入像素中文字体，保证中文风格统一 */
+@import url('https://cdn.jsdelivr.net/npm/zpix@1.0.2/dist/zpix.css');
+
+body {
+    /* 1. 象牙白背景：模拟旧纸张颜色 */
+    background-color: #f4f1ea; 
+    background-image: radial-gradient(#e5e0d5 1px, transparent 1px); /* 极细微的纸张肌理 */
+    background-size: 20px 20px;
+    color: #1a1a1a; /* 深炭黑文字 */
+    
+    /* 2. 英伦衬线与像素中文结合 */
+    font-family: "zpix", "Georgia", "Times New Roman", serif;
+    -webkit-font-smoothing: none;
+    image-rendering: pixelated;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.lab-card {
+    background: #ffffff;
+    /* 3. 星露谷风格：深炭黑的像素浮雕边框 */
+    border: 3px solid #1a1a1a;
+    box-shadow: 
+        2px 2px 0px #d1ccc0, /* 浅色外影 */
+        4px 4px 0px #1a1a1a, /* 深色主影 */
+        inset 1px 1px 0px rgba(0,0,0,0.05);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    font-family: "Georgia", serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 10px;
+}
+
+.sensor-btn {
+    background: #ffffff;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 12px 15px;
+    margin: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    /* 像素方块按压感 */
+    box-shadow: 2px 2px 0px #1a1a1a;
+    transition: all 0.1s;
+}
+
+.sensor-btn:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #1a1a1a;
+}
+
+/* 屏幕显示区：模拟旧公文的盖印感 */
+#screen {
+    background: #fdfdfd;
+    border: 1px dashed #1a1a1a;
+    padding: 20px;
+    margin-top: 20px;
+    min-height: 60px;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    color: #333333;
+    /* 增加一个微弱的左侧红边，像笔记本的装订线 */
+    border-left: 4px solid #cc0000;
+}
+
+/* 底部状态区 */
+.lunar-stats {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #666666;
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+    font-family: "Georgia", serif;
+}
+
+.lunar-stats span {
+    font-weight: bold;
+    color
     </style>
 </head>
 <body>
 
 <div class="lab-card">
-    <h1>猫部逻辑协议 v1.0</h1>
+    <h1>Cat Behavior Handbook</h1>
     <p style="font-size: 12px; color: #999;">请选择观测到的物理行为：</p>
     
     <button class="sensor-btn" onclick="decode('shout')">◈ 捕捉到自发性音频广播 (大叫)</button>
@@ -28,16 +122,16 @@
    <button class="sensor-btn" style="opacity: 0.5; cursor: not-allowed;">
     ◈ 更多异星行为破译中 (Upcoming...)
 </button>
-    <div id="display">等待信号输入...</div>
+    <div id="display">Waiting for signal input...</div>
     
     
-    <div style="margin-top: 30px; border-top: 1px dashed #8654e4; padding-top: 15px; font-family: monospace;">
-    <p style="font-size: 11px; color: #00d1b2; margin: 5px 0; text-transform: uppercase;">
+    <div style="margin-top: 30px; border-top: 1px dashed #dad1f7; padding-top: 15px; font-family: monospace;">
+    <p style="font-size: 11px; color: #141111; margin: 5px 0; text-transform: uppercase;">
         [数据上行中]：协议库同步至月球基站...
     </p>
     
     <div style="width: 100%; height: 2px; background: rgba(0,209,178,0.1); border-radius: 2px;">
-        <div style="width: 42%; height: 100%; background: #00d1b2; box-shadow: 0 0 5px #00d1b2;"></div>
+        <div style="width: 42%; height: 100%; background: #9af0f0; box-shadow: 0 0 5px #00d1b2;"></div>
     </div>
     
     <div style="display: flex; justify-content: space-between; margin-top: 8px;">
@@ -49,8 +143,8 @@
         信号延迟: 1.28s | 观测员: [clione]
     </p>
 </div>
-<div style="margin-top: 20px; padding: 15px; border: 1px double #00d1b2; background: rgba(0,209,178,0.05);">
-    <p style="font-size: 11px; color: #00d1b2; margin: 0 0 10px 0; font-family: monospace;">
+<div style="margin-top: 20px; padding: 15px; border: 1px double #242525; background: rgba(0,209,178,0.05);">
+    <p style="font-size: 11px; color: #1b2221; margin: 0 0 10px 0; font-family: monospace;">
         📡 [通讯链路已建立]：正在等待地球端的信号反馈...
     </p>
     <div style="height: 100px; display: flex; align-items: center; justify-content: center; border: 1px dashed #444;">
@@ -80,8 +174,7 @@
     }
 </script>
 
-</script> <div class="comments-section" style="margin-top: 50px;">
-    <script src="https://giscus.app/client.js"
+</div> <script src="https://giscus.app/client.js"
         data-repo="Clione001/moonlight-cat-lab"
         data-repo-id="R_kgDON7..." 
         data-category="General"
@@ -96,7 +189,9 @@
         crossorigin="anonymous"
         async>
     </script>
-</div>
 
+</body> </html>
 </body>
 </html>
+
+</script>
