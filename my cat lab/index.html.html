@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>猫部逻辑观测站</title>
+    <style>
+        /* 这里是你的实验室风格设计 */
+        body { background-color: #f5f7f9; font-family: 'Helvetica', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .lab-card { background: white; width: 400px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e0e6ed; }
+        h1 { font-size: 18px; color: #2c3e50; border-bottom: 2px solid #00d1b2; padding-bottom: 10px; letter-spacing: 2px; }
+        .sensor-btn { background: #fdfdfd; border: 1px solid #eee; width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; text-align: left; transition: 0.3s; color: #555; }
+        .sensor-btn:hover { background: #00d1b2; color: white; border-color: #00d1b2; }
+        #display { margin-top: 20px; padding: 20px; background: #fafafa; border-radius: 10px; min-height: 80px; font-size: 14px; line-height: 1.6; color: #666; border-left: 4px solid #ddd; }
+        .logic-label { font-weight: bold; color: #00d1b2; }
+    </style>
+</head>
+<body>
+
+<div class="lab-card">
+    <h1>猫部逻辑协议 v1.0</h1>
+    <p style="font-size: 12px; color: #999;">请选择观测到的物理行为：</p>
+    
+    <button class="sensor-btn" onclick="decode('shout')">◈ 捕捉到自发性音频广播 (大叫)</button>
+    <button class="sensor-btn" onclick="decode('stare')">◈ 视觉传感器长时间锁定 (盯着虚空)</button>
+    <button class="sensor-btn" onclick="decode('tail')">◈ 深度睡眠中的物理反馈 (拍尾巴)</button>
+    <button class="sensor-btn" onclick="decode('run')">◈ 瞬时动能爆发 (跑酷)</button>
+    <button class="sensor-btn" onclick="decode('nose')">◈ 触碰后感官复位 (舔鼻子)</button>
+   <button class="sensor-btn" style="opacity: 0.5; cursor: not-allowed;">
+    ◈ 更多异星行为破译中 (Upcoming...)
+</button>
+    <div id="display">等待信号输入...</div>
+    
+    
+    <div style="margin-top: 30px; border-top: 1px dashed #8654e4; padding-top: 15px; font-family: monospace;">
+    <p style="font-size: 11px; color: #00d1b2; margin: 5px 0; text-transform: uppercase;">
+        [数据上行中]：协议库同步至月球基站...
+    </p>
+    
+    <div style="width: 100%; height: 2px; background: rgba(0,209,178,0.1); border-radius: 2px;">
+        <div style="width: 42%; height: 100%; background: #00d1b2; box-shadow: 0 0 5px #00d1b2;"></div>
+    </div>
+    
+    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+        <p style="font-size: 10px; color: #999; margin: 0;">坐标: LUNAR BASE - 静海基地</p>
+        <p style="font-size: 10px; color: #999; margin: 0;">重力: 1.622 m/s²</p>
+    </div>
+    
+    <p style="font-size: 10px; color: #bbb; text-align: right; margin-top: 5px;">
+        信号延迟: 1.28s | 观测员: [clione]
+    </p>
+</div>
+</div>
+
+<script>
+    function decode(type) {
+        const screen = document.getElementById('display');
+        if(type === 'shout') {
+            screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 正在进行领地声呐扫描。探测到人类不可感知的环境扰动。";
+        } else if(type === 'stare') {
+            screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 视觉超频模式开启。正在锁定0.01mm级别的动态颗粒。";
+        } else if(type === 'tail') {
+            screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 后台模拟训练中。神经系统正在同步狩猎动作指令。";
+        }
+        else if(type === 'run') {
+    screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 正在执行‘猎食模拟’或‘寄生虫防御演习’。核心心率瞬间提升以排泄冗余肾上腺素。";
+}else if(type === 'run') {
+            screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 瞬时动能过载释放。正在执行‘猎食模拟’演习，核心心率瞬间提升以排泄冗余肾上腺素。";
+        } else if(type === 'nose') {
+            // 这里是新加的鼻子逻辑
+            screen.innerHTML = "<span class='logic-label'>[逻辑解构]：</span> 嗅觉传感器受到外部油脂干扰。正在执行‘液态自清洁协议’，以恢复鼻尖湿润度及气味分子捕捉精度。";
+        }
+    }
+</script>
+
+
+</body>
+</html>
